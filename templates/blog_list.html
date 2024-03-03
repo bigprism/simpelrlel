@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Blog List{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Blog List</h1>
+            <a href="{% url 'blog_create' %}" class="btn btn-primary">Create New Blog</a>
+            <br><br>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Content</th>
+                        <th>Author</th>
+                        <th>Created At</th>
+                        <th>Updated At</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for blog in blogs %}
+                    <tr>
+                        <td>{{ blog.id }}</td>
+                        <td>{{ blog.title }}</td>
+                        <td>{{ blog.content|truncatechars:50 }}</td>
+                        <td>{{ blog.author.username }}</td>
+                        <td>{{ blog.created_at }}</td>
+                        <td>{{ blog.updated_at }}</td>
+                        <td>
+                            <a href="{% url 'blog_detail' blog.id %}" class="btn btn-sm btn-info">View</a>
+                            <a href="{% url 'blog_update' blog.id %}" class="btn btn-sm btn-warning">Edit</a>
+                            <a href="{% url 'blog_delete' blog.id %}" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

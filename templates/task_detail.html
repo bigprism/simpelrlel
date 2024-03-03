@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1>Task Detail</h1>
+    <ul class="list-group">
+      <li class="list-group-item">Title: {{ task.title }}</li>
+      <li class="list-group-item">Description: {{ task.description }}</li>
+      <li class="list-group-item">Priority: {{ task.priority }}</li>
+      <li class="list-group-item">Status: {{ task.status }}</li>
+    </ul>
+    <a href="{% url 'task_update' task.id %}" class="btn btn-primary">Edit Task</a>
+    <a href="{% url 'task_delete' task.id %}" class="btn btn-danger">Delete Task</a>
+  </div>
+{% endblock %}
